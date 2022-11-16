@@ -18,7 +18,7 @@ Name of feature: Asynchronous code, and APIs
 
 Estimate of time needed to complete: 5 hours
 
-Start time: 3pm 
+Start time: 3pm
 
 Finish time: 9pm
 
@@ -30,8 +30,8 @@ Estimate of time needed to complete: 5 hours
 
 Start time:  
 
-Finish time: 
+Finish time:
 
-Actual time needed to complete: 
+Actual time needed to complete:
 
 ![WRRC](wrrc2.jpg)
