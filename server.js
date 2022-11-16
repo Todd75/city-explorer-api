@@ -29,7 +29,7 @@ app.get('/weather', (request, response, next) => {
     }
 });
 app.get('*', (request, response) => {
-    response.send('You found the Landing Page');
+    response.send('You Found the Landing Page');
 });
 
 console.log(data);
@@ -40,8 +40,6 @@ app.use((error, request, response, next) => {
 
 class Forecast {
     constructor(myCity) {
-        //console.log('hi', myCity);
-        //   this.date = myCity.date;
         this.date = myCity.valid_date;
         this.description = myCity.weather.description;
     }
