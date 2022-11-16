@@ -29,11 +29,24 @@ app.get('/weather', (request, response, next) => {
     }
 });
 app.get('*', (request, response) => {
-    response.send('This is the landing page');
+    response.send('You found the Landing Page');
 });
 
 console.log(data);
 
+app.use((error, request, response, next) => {
+    response.status(500).send(error.message);
+});
+
+class Forecast {
+    constructor(myCity) {
+        //console.log('hi', myCity);
+        //   this.date = myCity.date;
+        this.date = myCity.valid_date;
+        this.description = myCity.weather.description;
+    }
+}
 
 
-// app.listen(PORT, () => console.log(`Listening On Port ${PORT}`));
+
+app.listen(PORT, () => console.log(`Listening On Port ${PORT}`));
