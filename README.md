@@ -12,13 +12,26 @@
 
 ## Credit and Collaborations
 
-Name of feature:
+Worked with Keyan on the wrrc
 
-Estimate of time needed to complete:
+Name of feature: Asynchronous code, and APIs
 
-Start time:
+Estimate of time needed to complete: 5 hours
 
-Finish time:
+Start time: 3pm 
 
-Actual time needed to complete:
+Finish time: 9pm
 
+Actual time needed to complete: 6
+
+Name of feature: Custom Servers with Node and Express
+
+Estimate of time needed to complete: 5 hours
+
+Start time:  
+
+Finish time: 
+
+Actual time needed to complete: 
+
+![WRRC](wrrc2.jpg)
