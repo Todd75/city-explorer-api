@@ -1,7 +1,7 @@
 'use strict';
 
 const express = require('express');
-
+// const getWeather = require('./weather.js');
 let data = require('./data/weather.json');
 
 require('dotenv').config();
