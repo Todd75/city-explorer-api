@@ -18,34 +18,40 @@ app.use(cors());
 
 const PORT = process.env.PORT || 3002;
 
-app.get('/weather', (request, response, next) => {
+app.get('/weather', async (req, res, next) => {
     try {
-        let cityInput = request.query;
-        let selectedCity = data.find(city => city.city_name.toLowerCase() === cityInput.city.toLowerCase())
-        console.log(selectedCity, 'this is selected city');
-        let cityWeather = selectedCity.data.map(day => new Forecast(day));
-        console.log(cityWeather, 'this is city weather');
-        response.status(200).send(cityWeather);
+        let searchedLat = req.query.queriedLat;
+        let searchedLon = req.query.queriedLon;
+        // let cityInput = request.query;
+        // let selectedCity = data.find(city => city.city_name.toLowerCase() === cityInput.city.toLowerCase())
+        let weatherResults = await axios.get(`https://api.weatherbit.io/v2.0/forecast/daily?lat=${searchedLat}&lon=${searchedLon}&key=${process.env.WEATHER_API_KEY}&units=I&days=3`);
+        console.log(weatherResults);
+        let forecast = weatherResults.data.data.map( obj => new Forecast(obj));
+        
+        res.status(200).send(forecast);
 
     }
     catch (error) {
         next(error);
     }
 });
-app.get('*', (request, response) => {
-    response.send('You Found the Landing Page');
+app.get('*', (req, res) => {
+    res.send('You Found the Landing Page');
 });
 
 
 
-app.use((error, request, response, next) => {
-    response.status(500).send(error.message);
+app.use((error, req, res, next) => {
+    res.status(500).send(error.message);
 });
 
 class Forecast {
     constructor(myCity) {
         this.date = myCity.valid_date;
         this.description = myCity.weather.description;
+        this.low = myCity.low_temp;
+        this.high = myCity.max_temp;
+        this.fullDescription = `Low of ${this.low}, high of ${this.high} with ${this.description}.`;
     }
 }
 
