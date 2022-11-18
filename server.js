@@ -2,7 +2,7 @@
 
 const express = require('express');
 // const getWeather = require('./weather.js');
-let data = require('./data/weather.json');
+// let data = require('./data/weather.json');
 
 require('dotenv').config();
 
@@ -10,7 +10,7 @@ const axios = require('axios');
 
 const cors = require('cors');
 
-const { response } = require('express');
+// const { res } = require('express');
 
 const app = express();
 
