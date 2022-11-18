@@ -19,26 +19,20 @@ app.get('/weather', async (req, res, next) => {
         let searchedLat = req.query.queriedLat;
         let searchedLon = req.query.queriedLon;
         let weatherResults = await axios.get(`https://api.weatherbit.io/v2.0/forecast/daily?lat=${searchedLat}&lon=${searchedLon}&key=${process.env.WEATHER_API_KEY}&units=I&days=3`);
-        console.log(weatherResults);
         let forecast = weatherResults.data.data.map(obj => new Forecast(obj));
-
         res.status(200).send(forecast);
-
     }
     catch (error) {
         next(error);
     }
 });
 app.get('/movie', async (request, response, next) => {
-    console.log('hi');
     try {
         let searchMovie = request.query.search;
         let movieURL = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_API_KEY}&query=${searchMovie}`;
         let movieResults = await axios.get(movieURL);
         let topMovies = movieResults.data.results.map(movie => new Movie(movie));
-
         response.send(topMovies);
-        console.log(movieResults);
     } catch (error) {
         next(error);
     }
