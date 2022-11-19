@@ -1,18 +1,14 @@
 'use strict';
 
+
 const express = require('express');
-
-require('dotenv').config();
-
 const axios = require('axios');
-
 const cors = require('cors');
-
 const app = express();
-
+require('dotenv').config();
+const PORT = process.env.PORT || 3002;
 app.use(cors());
 
-const PORT = process.env.PORT || 3002;
 
 app.get('/weather', async (req, res, next) => {
     try {
