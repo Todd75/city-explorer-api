@@ -9,7 +9,19 @@ const app = express();
 app.use(cors());
 
 const PORT = process.env.PORT || 3002;
+app.get('/weather', theWeather);
 
+app.get('/movie', theMovie);
+
+app.get('*', (req, res) => {
+    res.send('You Found the Landing Page');
+});
+
+app.use((error, req, res, next) => {
+    res.status(500).send(error.message);
+});
+
+app.listen(PORT, () => console.log(`Listening On Port ${PORT}`));
 
 
 // app.get('/weather', async (req, res, next) => {
@@ -24,30 +36,6 @@ const PORT = process.env.PORT || 3002;
 //         next(error);
 //     }
 // });
-app.get('/weather', theWeather);
-
-// app.get('/movie', async (request, response, next) => {
-//     try {
-//         let searchMovie = request.query.search;
-//         let movieURL = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_API_KEY}&query=${searchMovie}`;
-//         let movieResults = await axios.get(movieURL);
-//         let topMovies = movieResults.data.results.map(movie => new Movie(movie));
-//         response.send(topMovies);
-//     } catch (error) {
-//         next(error);
-//     }
-// });
-app.get('/movie', theMovie);
-app.get('*', (req, res) => {
-    res.send('You Found the Landing Page');
-});
-
-
-
-app.use((error, req, res, next) => {
-    res.status(500).send(error.message);
-});
-
 // class Forecast {
 //     constructor(myCity) {
 //         this.date = myCity.valid_date;
@@ -67,5 +55,14 @@ app.use((error, req, res, next) => {
 //         this.releaseDate = movieObj.release_date;
 //     }
 // }
-
-app.listen(PORT, () => console.log(`Listening On Port ${PORT}`));
+// app.get('/movie', async (request, response, next) => {
+//     try {
+//         let searchMovie = request.query.search;
+//         let movieURL = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_API_KEY}&query=${searchMovie}`;
+//         let movieResults = await axios.get(movieURL);
+//         let topMovies = movieResults.data.results.map(movie => new Movie(movie));
+//         response.send(topMovies);
+//     } catch (error) {
+//         next(error);
+//     }
+// });
