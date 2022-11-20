@@ -8,7 +8,7 @@ async function getWeather(request, response) {
     let lat = request.query.lat;
     let lon = request.query.lon;
     const key = 'weather-' + lat + lon;
-    const url = `https://api.weatherbit.io/v2.0/forecast/daily?key=${process.env.WEATHER_API_KEY}&lang=en&units=I&days=16&lat=${lat}&lon=${lon}`;
+    const url = `https://api.weatherbit.io/v2.0/forecast/daily?key=${process.env.WEATHER_API_KEY}&lang=en&units=I&days=3&lat=${lat}&lon=${lon}`;
 
     if (cache[key] && (Date.now() - cache[key].timestamp < 50000)) {
         // console.log('Cache hit');
